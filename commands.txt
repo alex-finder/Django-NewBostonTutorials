@@ -5,3 +5,90 @@ Django Tutorial for Beginners - 3 - Creating Our First App
 
 	-- create an application within the project
 	python manage.py startapp music
+
+Django Tutorial for Beginners - 4 - Overview of a Basic App
+	Models are blueprints for the database
+	Views - Get/Post methods
+	
+Django Tutorial for Beginners - 5 - Views
+	https://www.youtube.com/watch?v=nAn1KpPlN2w&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK&index=5
+
+Django Tutorial for Beginners - 6 - Database Setup
+	https://www.youtube.com/watch?v=IU3LbtbmXXI&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK&index=6
+
+python manage.py migrate -  command syncs code with the database
+- goes to seetings/ installed apps and creates tables for each app
+
+Django Tutorial for Beginners - 8 - Activating Models
+	https://www.youtube.com/watch?v=dONYOtb2ySI&index=8&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK
+	
+	# Show migrations to be made
+	python manage.py makemigrations music
+	
+	# Show SQL Output without doing the migration
+	python manage.py sqlmigrate music {migration_id}
+	
+	# Do Migrations
+	python manage.py migrate
+
+Django Tutorial for Beginners - 9 - Database API
+	https://www.youtube.com/watch?v=uYTiPwEGKyQ&index=9&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK
+	
+	# Run Interactive DB API shell
+	python manage.py shell
+	
+	# Import Model/DB Objects
+	from music.models import Album,Song
+	
+	# Return all Album table records
+	Album.objects.all()
+	
+	# create an Album instance to be saved as a record in the DB
+	a = Album(artist="Taylor Swift", album_title="Red", genre="Country", album_logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiT-dkPa0UGrAgKoGlKTwO_QWxnRvAtQ9oqhnyCavTLJcFQ-Q0")
+	
+	# Save the record to the Database
+	a.save()
+	
+	# Print Column value for record
+	a.artist
+	a.id # same thing as a.pk
+	
+	# Alternative way to create records
+	b = Album()
+	b.artist = "Myth"
+	b.album_title = "high school"
+	b.genre = "punk"
+	b.album_logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiT-dkPa0UGrAgKoGlKTwO_QWxnRvAtQ9oqhnyCavTLJcFQ-Q0"
+	b.save()
+	
+	exit() - exits the Shell
+	
+	Add 
+	    def __str__(self):
+			return self.album_title + ' - ' + self.artist
+		
+		method to each Model class to print custom information
+	
+	
+	Album.objects.filter(id=1) - Select returns first object with id 1
+	Album.objects.filter(artist__startswith='Taylor')
+	
+Django Tutorial for Beginners - 11 - Admin Interface
+	https://www.youtube.com/watch?v=Mjs1elH3Pdg&index=11&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK
+
+	python manage.py createsuperuser
+	
+	# Add lines of code to music\admin.py to see the Album entity in site admin section
+	from .models import Album
+	admin.site.register(Album)
+	
+	
+Django Tutorial for Beginners - 12 - Writing Another View
+	https://www.youtube.com/watch?v=mWofrhTwGWQ&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK&index=12
+	
+Django Tutorial for Beginners - 13 - Connecting to the Database
+	https://www.youtube.com/watch?v=b0d09mYsORs&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK&index=13
+	
+Django Tutorial for Beginners - 14 - Templates - WIP
+	https://www.youtube.com/watch?v=0HVwUQ0Ok7Y&index=14&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK
+	
