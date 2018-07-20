@@ -1,0 +1,7 @@
+Django Tutorial for Beginners - 3 - Creating Our First App
+	https://www.youtube.com/watch?v=4saN7GZnawU&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK&index=3
+	-- start server
+	python manage.py runserver
+
+	-- create an application within the project
+	python manage.py startapp music
